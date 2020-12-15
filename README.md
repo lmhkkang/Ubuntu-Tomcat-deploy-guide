@@ -70,7 +70,7 @@ sudo vi /etc/apt/sources.list
 
 ### 2. install tomcat9
 
-레퍼런스  
+레퍼런스
 https://www.rosehosting.com/blog/install-tomcat-9-on-an-ubuntu-16-04-vps/  
 
 https://websiteforstudents.com/setup-apache-tomcat9-on-ubuntu-16-04-17-10-18-04/  
@@ -124,4 +124,49 @@ systemctl enable tomcat
 ##### 테스트
 ```
 sudo service tomcat status
+```
+
+### 3. deploy project
+
+
+
+```
+sudo su
+vi /opt/apache-tomcat-9.0.41/conf/web.xml
+```
+
+##### 이슈  
+```
+java.io.FileNotFoundException: class path resource [config/logging/log4j2-${spring.profiles.active}.xml] cannot be resolved to URL because it does not exist
+```
+##### 해결
+```
+    <context-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>dev</param-value>
+    </context-param>
+```
+위 내용을 추가해야함  
+
+##### 이슈
+```
+images, files 경로 문제
+```
+##### 해결
+```
+config/initialize/config-dev-properties
+```
+```
+file.upload.dir= /tmp/kice_book/files
+image.upload.dir= /tmp/kice_book/images
+```
+##### 배포 방법
+```
+/opt/apache-tomcat-9.0.41/webapps
+```
+위 경로에 war를 넣어주면 몇 초 뒤 읽음
+
+##### 로그 디버깅 방법
+```
+tail -f /opt/apache-tomcat-9.0.41/logs/*
 ```
