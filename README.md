@@ -70,6 +70,10 @@ sudo vi /etc/apt/sources.list
 
 ### 2. install tomcat9
 
+레퍼런스
+https://www.rosehosting.com/blog/install-tomcat-9-on-an-ubuntu-16-04-vps/  
+
+https://websiteforstudents.com/setup-apache-tomcat9-on-ubuntu-16-04-17-10-18-04/  
 ##### tomcat9 사용자 추가
 ```
 sudo useradd -r tomcat9 --shell /bin/false
