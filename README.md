@@ -1,6 +1,6 @@
 # ubuntu16.04 deploy java project
 
-### 1. install jdk8 
+### 1. install jdk8 (manually)
 
 ```
 cd ~
@@ -136,10 +136,12 @@ vi /opt/apache-tomcat-9.0.41/conf/web.xml
 ```
 
 ##### 이슈  
+이클립스  프로젝트 내에 web.xml 파일세팅을 못가져옴
 ```
 java.io.FileNotFoundException: class path resource [config/logging/log4j2-${spring.profiles.active}.xml] cannot be resolved to URL because it does not exist
 ```
 ##### 해결
+unbuntu 의 tomcat9 > web.xml 파일에 추가.
 ```
     <context-param>
         <param-name>spring.profiles.active</param-name>
@@ -160,6 +162,10 @@ config/initialize/config-dev-properties
 file.upload.dir= /tmp/kice_book/files
 image.upload.dir= /tmp/kice_book/images
 ```
+```
+mkdir /tmp/kice_book/files
+mkdir /tmp/kice_book/images
+```
 ##### 배포 방법
 ```
 /opt/apache-tomcat-9.0.41/webapps
@@ -169,4 +175,69 @@ image.upload.dir= /tmp/kice_book/images
 ##### 로그 디버깅 방법
 ```
 tail -f /opt/apache-tomcat-9.0.41/logs/*
+```
+
+### 4. install jenkins
+```
+cd ~ 
+wget -q -O  - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add - 
+echo deb https://pkg.jenkins.io/debian-stable binary/  | sudo tee /etc/apt/sources.list.d/jenkins.list 
+sudo apt-get update 
+sudo apt-get install jenkins 
+sudo service jenkins start 
+sudo service jenkins status
+```
+##### jenkins 포트 변경
+```
+sudo vi /etc/default/jenkins
+```
+```
+HTTP_PORT=9000
+```
+```
+sudo service jenkins restart
+```
+
+##### jenkins 초기 비밀번호 확인
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+#### 5. install maven
+```
+sudo apt-get -y install maven
+```
+
+##### 권한 설정
+```
+ls -al /etc/sudoers
+sudo chmod 660 /etc/sudoers
+sudo vi /etc/sudoers
+```
+```
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+jenkins ALL=(ALL:ALL) NOPASSWD: ALL
+```
+```
+sudo chmod 440 /etc/sudoers
+ls -al /etc/sudoers
+```
+
+##### deploy 쉘 작성
+```
+echo "start deploy"
+
+cd /home/vagrant/workspace/KiceBook
+git pull
+mvn install
+mv /home/vagrant/workspace/KiceBook/target/kb-1.0.0.war /home/vagrant/workspace/KiceBook/target/ROOT.war
+sudo mv /home/vagrant/workspace/KiceBook/target/ROOT.war /opt/tomcat-latest/webapps/ROOT.war
+
+echo "end deploy"
+```
+
+##### jenkins 연동
+```
+sudo -Hu vagrant bash -c 'bash /home/vagrant/workspace/deploy.sh'
 ```
