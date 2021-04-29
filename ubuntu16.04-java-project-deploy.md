@@ -167,23 +167,16 @@ Environment=CATALINA_BASE=/opt/tomcat-latest
 Environment="CATALINA_OPTS=-Xms512m -Xmx512m"
 Environment="JAVA_OPTS=-Dfile.encoding=UTF-8 -Dnet.sf.ehcache.skipUpdateCheck=true -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC"
 
-  
-
 ExecStart=/opt/tomcat-latest/bin/startup.sh
 ExecStop=/opt/tomcat-latest/bin/shutdown.sh
 
-  
-
 [Install]
-
 WantedBy=multi-user.target
-
 ```
 
 ##### service 재기동
 
-```
-
+```bash
 sudo su
 
 systemctl daemon-reload
@@ -191,15 +184,12 @@ systemctl daemon-reload
 systemctl start tomcat
 
 systemctl enable tomcat
-
 ```
 
 ##### 테스트
 
-```
-
+```bash
 sudo service tomcat status
-
 ```
 
   
@@ -210,12 +200,10 @@ sudo service tomcat status
   
   
 
-```
-
+```bash
 sudo su
 
 vi /opt/apache-tomcat-9.0.41/conf/web.xml
-
 ```
 
   
@@ -225,25 +213,18 @@ vi /opt/apache-tomcat-9.0.41/conf/web.xml
 이클립스 프로젝트 내에 web.xml 파일세팅을 못가져옴
 
 ```
-
 java.io.FileNotFoundException: class path resource [config/logging/log4j2-${spring.profiles.active}.xml] cannot be resolved to URL because it does not exist
-
 ```
 
 ##### 해결
 
 unbuntu 의 tomcat9 > web.xml 파일에 추가.
 
-```
-
+```xml
 <context-param>
-
-<param-name>spring.profiles.active</param-name>
-
-<param-value>dev</param-value>
-
+	<param-name>spring.profiles.active</param-name>
+	<param-value>dev</param-value>
 </context-param>
-
 ```
 
 위 내용을 추가해야함
@@ -253,41 +234,30 @@ unbuntu 의 tomcat9 > web.xml 파일에 추가.
 ##### 이슈
 
 ```
-
 images, files 경로 문제
-
 ```
 
 ##### 해결
 
 ```
-
 config/initialize/config-dev-properties
-
 ```
 
 ```
-
 file.upload.dir= /tmp/kice_book/files
-
 image.upload.dir= /tmp/kice_book/images
-
 ```
 
-```
-
+```bash
 mkdir /tmp/kice_book/files
 
 mkdir /tmp/kice_book/images
-
 ```
 
 ##### 배포 방법
 
 ```
-
 /opt/apache-tomcat-9.0.41/webapps
-
 ```
 
 위 경로에 war를 넣어주면 몇 초 뒤 읽음
@@ -296,18 +266,15 @@ mkdir /tmp/kice_book/images
 
 ##### 로그 디버깅 방법
 
-```
-
+```bash
 tail -f /opt/apache-tomcat-9.0.41/logs/*
-
 ```
 
   
 
 ### 4. install jenkins
 
-```
-
+```bash
 cd ~
 
 wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
@@ -321,27 +288,20 @@ sudo apt-get install jenkins
 sudo service jenkins start
 
 sudo service jenkins status
-
 ```
 
 ##### jenkins 포트 변경
 
-```
-
+```bash
 sudo vi /etc/default/jenkins
-
 ```
 
 ```
-
 HTTP_PORT=9000
-
 ```
 
-```
-
+```bash
 sudo service jenkins restart
-
 ```
 
   
@@ -438,5 +398,5 @@ port-forwarding 시 Host의 Port가 Virtual Box에 올라와있는 다른 Box의
 Guest의 Port는 Vagrantfile 내부에서만 겹치지 않으면됨.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNDEyNjg5OV19
+eyJoaXN0b3J5IjpbMTA0ODgwNzkzOF19
 -->
