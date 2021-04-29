@@ -16,9 +16,11 @@ tomcat 1 이용시 보통 3개의 포트를 이용함.
 
 3. 서비스 포트
 
-|       
-|tomcat_1 |tomcat_2 |
+|       |tomcat_1            |tomcat_2        |
 |----------------|-------------------------------|-----------------------------|
+server port (내부)|`8005` |`18005` |
+ajp1.3 port(내부) |`8009` |`18009` |
+|Connect Port(외부) |`8080`|`18080`
 # tomcat 복사
 
 ubuntu-tomcat-deploy-guide 가이드문서를 수행했다면 `/opt` 디렉토리 하위에 `apache-tomcat-9.0.41` 가 존재함.
@@ -257,6 +259,6 @@ ExecStop=/opt2/tomcat-latest/bin/shutdown.sh
 WantedBy=multi-user.target
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODk5NTcxNjQ1LC0xMjczNDA2NSwxMTgxNT
-A0MzEyXX0=
+eyJoaXN0b3J5IjpbLTE1OTIzODgzMzAsLTEyNzM0MDY1LDExOD
+E1MDQzMTJdfQ==
 -->
