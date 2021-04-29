@@ -1,5 +1,11 @@
 ### Ubuntu Tomcat deploy guide
-No.1 ubuntu
+1. ubuntu16.04-java-project-deploy
+2. ubuntu16.04-multi-tomcat-deploy
+
+## Infra
+server OS: ubuntu 16.04
+memory: 4GB minimum
+disk size; 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNjAxNjk0NzhdfQ==
+eyJoaXN0b3J5IjpbMTI4Mzk4NjEwMF19
 -->
