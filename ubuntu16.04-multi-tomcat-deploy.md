@@ -13,27 +13,16 @@ tomcat 1 이용시 보통 3개의 포트를 이용함.
 2.  apache 연동을 위한 ajp포트
 3.  서비스 포트
 
-tomcat_1
 
-tomcat_2
+| |tomcat_1 |tomcat_2 |
 
-server port (내부)
+|----------------|-------------------------------|-----------------------------|
 
-`8005`
+server port (내부)|`8005` |`18005` |
 
-`18005`
+ajp1.3 port(내부) |`8009` |`18009` |
 
-ajp1.3 port(내부)
-
-`8009`
-
-`18009`
-
-Connect Port(외부)
-
-`8080`
-
-`18080`
+|Connect Port(외부) |`8080`|`18080`
 
 # tomcat 복사
 
@@ -267,5 +256,5 @@ ExecStop=/opt2/tomcat-latest/bin/shutdown.sh
 WantedBy=multi-user.target
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE4MTUwNDMxMl19
+eyJoaXN0b3J5IjpbLTE0MTM1NTM2MCwxMTgxNTA0MzEyXX0=
 -->
