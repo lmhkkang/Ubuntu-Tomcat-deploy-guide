@@ -308,64 +308,49 @@ sudo service jenkins restart
 
 ##### jenkins 초기 비밀번호 확인
 
-```
-
+```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-
 ```
 
   
 
 #### 5. install maven
 
-```
-
+```bash
 sudo apt-get -y install maven
-
 ```
 
   
 
 ##### 권한 설정
 
-```
-
+```bash
 ls -al /etc/sudoers
 
 sudo chmod 660 /etc/sudoers
 
 sudo vi /etc/sudoers
-
 ```
 
 ```
-
 # User privilege specification
-
 root ALL=(ALL:ALL) ALL
-
 jenkins ALL=(ALL:ALL) NOPASSWD: ALL
-
 ```
 
-```
-
+```bash
 sudo chmod 440 /etc/sudoers
 
 ls -al /etc/sudoers
-
 ```
 
   
 
-##### deploy 쉘 작성
+##### deploy 쉘 작성  (상황에 맞게 수정)
 
-```
-
+```bash
 echo "start deploy"
-
   
-
 cd /home/vagrant/workspace/KiceBook
 
 git pull
@@ -376,20 +361,15 @@ mv /home/vagrant/workspace/KiceBook/target/kb-1.0.0.war /home/vagrant/workspace/
 
 sudo mv /home/vagrant/workspace/KiceBook/target/ROOT.war /opt/tomcat-latest/webapps/ROOT.war
 
-  
-
 echo "end deploy"
-
 ```
 
   
 
 ##### jenkins 연동
 
-```
-
+```bash
 sudo -Hu vagrant bash -c 'bash /home/vagrant/workspace/deploy.sh'
-
 ```
 
 ##### Vagrantfile  port-forwarding 
@@ -398,5 +378,5 @@ port-forwarding 시 Host의 Port가 Virtual Box에 올라와있는 다른 Box의
 Guest의 Port는 Vagrantfile 내부에서만 겹치지 않으면됨.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0ODgwNzkzOF19
+eyJoaXN0b3J5IjpbLTEzMDE4NzQ2NDhdfQ==
 -->
