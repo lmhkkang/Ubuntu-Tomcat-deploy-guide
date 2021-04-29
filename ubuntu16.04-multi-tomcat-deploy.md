@@ -16,7 +16,8 @@ tomcat 1 이용시 보통 3개의 포트를 이용함.
 
 3. 서비스 포트
 
-|       |tomcat_1 |tomcat_2 |
+|       
+|tomcat_1 |tomcat_2 |
 |----------------|-------------------------------|-----------------------------|
 # tomcat 복사
 
@@ -256,5 +257,6 @@ ExecStop=/opt2/tomcat-latest/bin/shutdown.sh
 WantedBy=multi-user.target
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzM0MDY1LDExODE1MDQzMTJdfQ==
+eyJoaXN0b3J5IjpbODk5NTcxNjQ1LC0xMjczNDA2NSwxMTgxNT
+A0MzEyXX0=
 -->
