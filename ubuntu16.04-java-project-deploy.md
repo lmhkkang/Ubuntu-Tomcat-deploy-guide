@@ -48,42 +48,30 @@ vi /etc/environment
 ```
 
 ```
-
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/jdk1.8.0_261/bin:/usr/lib/jvm/jdk1.8.0_261/jre/bin"
 
 J2SDKDIR="/usr/lib/jvm/jdk1.8.0_261"
 J2REDIR="/usr/lib/jvm/jdk1.8.0_261/jre*
-
 JAVA_HOME="/usr/lib/jvm/jdk1.8.0_261"
-
 ```
 
 ##### java 등록
 
-```
-
+```bash
 sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_261/bin/java" 0
-
 sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_261/bin/javac" 0
-
 sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_261/bin/java
-
 sudo update-alternatives --set javac /usr/lib/jvm/jdk1.8.0_261/bin/javac
 
   
-
 update-alternatives --list java
-
 update-alternatives --list javac
-
 ```
 
 ##### 테스트
 
 ```
-
 java -version
-
 ```
 
   
@@ -92,44 +80,32 @@ java -version
 
   
 
-```
-
+```bash
 sudo apt-get update
-
 sudo apt-get install default-jdk
-
 ```
 
   
 
 apt repository에 등록된 모듈 버전 확인
 
-```
-
+```bash
 sudo apt-cache policy <모듈>
-
 ```
 
   
 
 ### 옵션
 
-  
-
 해외망이 느릴 경우 사용
 
-```
-
+```bash
 sudo vi /etc/apt/sources.list
-
 ```
 
 ```
-
 :%s/archive.ubuntu.com/ftp.daum.net/g
-
 :%s/security.ubuntu.com/ftp.daum.net/g
-
 ```
 
   
@@ -148,18 +124,15 @@ https://websiteforstudents.com/setup-apache-tomcat9-on-ubuntu-16-04-17-10-18-04/
 
 ##### tomcat9 사용자 추가
 
-```
-
+```bash
 sudo useradd -r tomcat9 --shell /bin/false
-
 ```
 
   
 
 ##### tomcat9 설치
 
-```
-
+```bash
 cd /opt
 
 sudo wget http://mirrors.sonic.net/apache/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
@@ -169,53 +142,34 @@ sudo tar -zxf apache-tomcat-9.0.41.tar.gz
 sudo ln -s apache-tomcat-9.0.41 tomcat-latest
 
 sudo chown -hR tomcat9: tomcat-latest apache-tomcat-9.0.41
-
 ```
 
 ##### tomcat9 service 설정파일 생성
 
-```
-
+```bash
 sudo vi /etc/systemd/system/tomcat.service
-
 ```
 
 ```
-
 [Unit]
-
 Description=Tomcat9
-
 After=network.target
-
-  
-
+ 
 [Service]
-
 Type=forking
-
 User=tomcat9
-
 Group=tomcat9
 
-  
-
 Environment=CATALINA_PID=/opt/tomcat-latest/tomcat9.pid
-
 Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-
 Environment=CATALINA_HOME=/opt/tomcat-latest
-
 Environment=CATALINA_BASE=/opt/tomcat-latest
-
 Environment="CATALINA_OPTS=-Xms512m -Xmx512m"
-
 Environment="JAVA_OPTS=-Dfile.encoding=UTF-8 -Dnet.sf.ehcache.skipUpdateCheck=true -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC"
 
   
 
 ExecStart=/opt/tomcat-latest/bin/startup.sh
-
 ExecStop=/opt/tomcat-latest/bin/shutdown.sh
 
   
@@ -484,5 +438,5 @@ port-forwarding 시 Host의 Port가 Virtual Box에 올라와있는 다른 Box의
 Guest의 Port는 Vagrantfile 내부에서만 겹치지 않으면됨.
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzM4NDUyMzA5XX0=
+eyJoaXN0b3J5IjpbLTEzNDEyNjg5OV19
 -->
