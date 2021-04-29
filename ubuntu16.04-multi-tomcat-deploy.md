@@ -5,24 +5,24 @@ ubuntu-tomcat-deploy-guide 가이드 문서 환경세팅을 끝마친 시점을 
 
 목표: 하나의 ubuntu 서버에 tomcat을 두개 올려고 하나의 톰캣당 프로젝트하나를 할당함. Jenkins 서버
 
+
 ## 포트지정
 
 tomcat 1 이용시 보통 3개의 포트를 이용함.
 
-1.  tomcat 내부 포트
-2.  apache 연동을 위한 ajp포트
-3.  서비스 포트
+1. tomcat 내부 포트
 
+2. apache 연동을 위한 ajp포트
+
+3. 서비스 포트
 
 | |tomcat_1 |tomcat_2 |
-
 |----------------|-------------------------------|-----------------------------|
+# tomcat 복사
 
-server port (내부)|`8005` |`18005` |
+ubuntu-tomcat-deploy-guide 가이드문서를 수행했다면 `/opt` 디렉토리 하위에 `apache-tomcat-9.0.41` 가 존재함.
 
-ajp1.3 port(내부) |`8009` |`18009` |
-
-|Connect Port(외부) |`8080`|`18080`
+톰캣 2개가 필요하기 때문에 루트 티렉토리 하위에 `/opt2` 디렉토리 생성함.
 
 # tomcat 복사
 
@@ -256,5 +256,5 @@ ExecStop=/opt2/tomcat-latest/bin/shutdown.sh
 WantedBy=multi-user.target
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MTM1NTM2MCwxMTgxNTA0MzEyXX0=
+eyJoaXN0b3J5IjpbOTg1MjQ1MTk5LDExODE1MDQzMTJdfQ==
 -->
